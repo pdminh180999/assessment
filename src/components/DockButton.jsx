@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Plus, Search, Star, Minimize, ChevronLeft, ChevronRight} from 'lucide-react';
 import StackItem from "./StackItem.jsx";
 
@@ -18,14 +18,33 @@ export default function DockButton({
                                        themeClasses
                                    }) {
     const [currentPage, setCurrentPage] = useState(0);
-    const ITEMS_PER_PAGE = window.innerWidth < 768 ? 3 : 6;
-    const {dockBg, borderColor} = themeClasses;
-    const isDark = theme === 'dark';
-    const displayStacks = filteredStacks || stacks;
+    const [itemsPerPage, setItemsPerPage] = useState(
+        window.innerWidth < 768 ? 3 : 6
+    );
 
+    useEffect(() => {
+        const handleResize = () => {
+            const newValue = window.innerWidth < 768 ? 3 : 6;
+            setItemsPerPage(prev => {
+                if (prev !== newValue) {
+                    setCurrentPage(0); // reset page when layout changes
+                    return newValue;
+                }
+                return prev;
+            });
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const ITEMS_PER_PAGE = itemsPerPage;
+    const displayStacks = filteredStacks || stacks;
     const totalPages = Math.ceil(displayStacks.length / ITEMS_PER_PAGE);
     const startIndex = currentPage * ITEMS_PER_PAGE;
     const visibleStacks = displayStacks.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+    const {dockBg, borderColor} = themeClasses;
+    const isDark = theme === 'dark';
 
     const handlePrevPage = () => {
         if (currentPage > 0) setCurrentPage(currentPage - 1);
@@ -34,6 +53,7 @@ export default function DockButton({
     const handleNextPage = () => {
         if (currentPage < totalPages - 1) setCurrentPage(currentPage + 1);
     };
+
     return (
         <div
             className={`${dockBg} backdrop-blur-xl rounded-3xl px-3 py-3 flex items-center gap-1 border ${borderColor} shadow-2xl`}>
