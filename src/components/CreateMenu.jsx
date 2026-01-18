@@ -41,7 +41,7 @@ export default function CreateMenu({
         e.preventDefault();
         onCreateCard(cardStackId, {
             name: cardName,
-            cardUrl : `https://ui-avatars.com/api/?name=${cardName}&size=400&background=random`,
+            cover : `https://ui-avatars.com/api/?name=${cardName}&size=400&background=random`,
             description: cardDescription,
             stackId: cardStackId
         });
