@@ -39,7 +39,12 @@ export default function CreateMenu({
 
     const handleCreateCard = (e) => {
         e.preventDefault();
-        onCreateCard(cardStackId, {name: cardName, cover: cardUrl, description: cardDescription, stackId: cardStackId});
+        onCreateCard(cardStackId, {
+            name: cardName,
+            cardUrl : `https://ui-avatars.com/api/?name=${cardName}&size=400&background=random`,
+            description: cardDescription,
+            stackId: cardStackId
+        });
         setCardName('');
         setCardUrl('');
         setCardDescription('');
@@ -50,7 +55,12 @@ export default function CreateMenu({
 
     const handleEditCard = (e) => {
         e.preventDefault();
-        onEditCard(cardStackId, card.id, {name: cardName, cover: cardUrl, description: cardDescription, stackId: cardStackId});
+        onEditCard(cardStackId, card.id, {
+            name: cardName,
+            cover: cardUrl ? cardUrl : `https://ui-avatars.com/api/?name=${cardName}&size=400&background=random`,
+            description: cardDescription,
+            stackId: cardStackId
+        });
         setCardName('');
         setCardUrl('');
         setCardDescription('');
@@ -90,7 +100,12 @@ export default function CreateMenu({
                     </h3>
                     <button
                         onClick={() => {
+                            setStackName('');
                             setShowStackForm(false);
+                            setCardName('');
+                            setCardUrl('');
+                            setCardDescription('');
+                            setCardStackId('');
                             setShowCardForm(false);
                             onClose();
                         }}
@@ -145,12 +160,16 @@ export default function CreateMenu({
                             role="img" aria-label="Cover image preview">
                             {
                                 isValidUrl(cardUrl) ? (
-                                    <img alt="Cover preview" className="w-full h-full object-cover" src={cardUrl}/>
-                                ) : (
-                                    <div className="w-full h-full flex items-center justify-center text-white/30">
-                                        <Image className="w-16 h-16"/>
-                                    </div>
-                                )
+                                        <img alt="Cover preview" className="w-full h-full object-cover" src={cardUrl}/>
+                                    ) :
+                                    cardName ? (<img alt="Cover preview" className="w-full h-full object-cover"
+                                                     src={`https://ui-avatars.com/api/?name=${cardName}&size=400&background=random`}/>
+                                    ) : (
+                                        <div className="w-full h-full flex items-center justify-center text-white/30">
+                                            <Image className="w-16 h-16"/>
+                                        </div>
+
+                                    )
                             }
                         </div>
                         <input
@@ -158,7 +177,6 @@ export default function CreateMenu({
                             value={cardUrl}
                             onChange={(e) => setCardUrl(e.target.value)}
                             placeholder="Image URL"
-                            required
                             className={`w-full px-4 py-3 ${inputBg} backdrop-blur-sm border ${borderColor} rounded-xl ${textColor} placeholder-${isDark ? 'gray-500' : 'white/50'}`}
                         />
                         <input
@@ -204,9 +222,13 @@ export default function CreateMenu({
                                 type="button"
                                 onClick={() => {
                                     if (card) {
+                                        setStackName('');
                                         setShowStackForm(false);
+                                        setCardName('');
+                                        setCardUrl('');
+                                        setCardDescription('');
+                                        setCardStackId('');
                                         setShowCardForm(false);
-                                        onClose();
                                     } else {
                                         setShowCardForm(false);
                                     }
@@ -257,9 +279,13 @@ export default function CreateMenu({
                                 type="button"
                                 onClick={() => {
                                     if (stack) {
+                                        setStackName('');
                                         setShowStackForm(false);
+                                        setCardName('');
+                                        setCardUrl('');
+                                        setCardDescription('');
+                                        setCardStackId('');
                                         setShowCardForm(false);
-                                        onClose();
                                     } else {
                                         setShowStackForm(false);
                                     }
