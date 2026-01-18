@@ -13,7 +13,7 @@ export default function DroppableDeleteZone({ isActive }) {
     return (
         <div
             ref={setNodeRef}
-            className="fixed top-24 left-0 right-0 h-40 z-40 flex items-start justify-center pt-8 pointer-events-auto"
+            className="fixed top-0 left-0 right-0 h-40 z-40 flex items-start justify-center pt-8 pointer-events-auto"
         >
             <div className={`${isOver ? 'bg-red-600 scale-110' : 'bg-red-500/90'} backdrop-blur-sm rounded-full p-6 shadow-2xl transition-all ${isOver ? '' : 'animate-pulse'}`}>
                 <Trash2 className="w-8 h-8 text-white" />
