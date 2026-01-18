@@ -91,8 +91,7 @@ export default function CreateMenu({
     const isDark = themeClasses.cardBg === 'bg-gray-800';
 
     return (
-        <div
-            className={`pointer-events-auto fixed inset-0 flex items-center justify-center z-40 ${bgOverlay} backdrop-blur-md`}>
+        <div className={`pointer-events-auto fixed inset-0 flex items-center justify-center z-40 ${bgOverlay} backdrop-blur-md`}>
             <div className={`${modalBg} backdrop-blur-xl rounded-3xl p-6 w-96 border ${borderColor} shadow-2xl`}>
                 <div className="flex items-center justify-between mb-6">
                     <h3 className={`text-xl font-bold ${textColor}`}>
@@ -168,11 +167,11 @@ export default function CreateMenu({
                                         <div className="w-full h-full flex items-center justify-center text-white/30">
                                             <Image className="w-16 h-16"/>
                                         </div>
-
                                     )
                             }
                         </div>
                         <input
+                            id="cardImageUrl"
                             type="url"
                             value={cardUrl}
                             onChange={(e) => setCardUrl(e.target.value)}
@@ -180,6 +179,7 @@ export default function CreateMenu({
                             className={`w-full px-4 py-3 ${inputBg} backdrop-blur-sm border ${borderColor} rounded-xl ${textColor} placeholder-${isDark ? 'gray-500' : 'white/50'}`}
                         />
                         <input
+                            id="cardName"
                             type="text"
                             value={cardName}
                             onChange={(e) => setCardName(e.target.value)}
@@ -188,6 +188,7 @@ export default function CreateMenu({
                             className={`w-full px-4 py-3 ${inputBg} backdrop-blur-sm border ${borderColor} rounded-xl ${textColor} placeholder-${isDark ? 'gray-500' : 'white/50'}`}
                         />
                         <select
+                            id="cardStack"
                             value={cardStackId}
                             onChange={(e) => setCardStackId(e.target.value)}
                             required
@@ -205,6 +206,7 @@ export default function CreateMenu({
                             })}
                         </select>
                         <textarea
+                            id="cardDescription"
                             value={cardDescription}
                             onChange={(e) => setCardDescription(e.target.value)}
                             placeholder="Description (optional)"
@@ -229,6 +231,7 @@ export default function CreateMenu({
                                         setCardDescription('');
                                         setCardStackId('');
                                         setShowCardForm(false);
+                                        onClose();
                                     } else {
                                         setShowCardForm(false);
                                     }
@@ -261,6 +264,7 @@ export default function CreateMenu({
                             </button>
                         </div>
                         <input
+                            id="stackName"
                             type="text"
                             value={stackName}
                             onChange={(e) => setStackName(e.target.value)}
@@ -286,6 +290,7 @@ export default function CreateMenu({
                                         setCardDescription('');
                                         setCardStackId('');
                                         setShowCardForm(false);
+                                        onClose();
                                     } else {
                                         setShowStackForm(false);
                                     }
