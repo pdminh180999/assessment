@@ -44,7 +44,6 @@ export default function SwipeableCard({
                             src={card.cover}
                             alt={card.name}
                             className="w-full h-full object-cover pointer-events-none select-none"
-                            draggable="false"
                         />
                     ) : (
                         <div className="text-6xl pointer-events-none select-none">🖼️</div>
@@ -61,7 +60,7 @@ export default function SwipeableCard({
                         </p>
                     )}
                 </div>
-                <div className="absolute right-4">
+                <div className="absolute bottom-2 right-2">
                     <button className={`p-2 hover:${isDark ? 'bg-gray-700' : 'bg-gray-100'} rounded-lg`}
                             onClick={() => {
                                 onClose();
