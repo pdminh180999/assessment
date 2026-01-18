@@ -11,7 +11,7 @@ export default function DroppableMoveZone({isActive, onMove, isLeft}) {
     if (!isActive) return null;
 
     return (
-        <div ref={setNodeRef} className={`absolute ${isLeft ? '-left-32' : '-right-32'} flex items-center h-full`}>
+        <div ref={setNodeRef} className={`absolute ${isLeft ? '-left-24' : '-right-24'} flex items-center h-full`}>
             <button
                 onClick={onMove}
                 className={`${isOver ? 'scale-110' : 'animate-pulse'} w-10 h-10 flex-shrink-0 bg-gray-600/50 rounded-xl flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed hover:scale-105 transition-transform`}

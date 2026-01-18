@@ -377,6 +377,9 @@ export default function WishlistDock() {
                                     setIsDockOpen(false);
                                     setShowSearch(false);
                                     setSearchQuery('');
+                                    setCurrentSwipeCard(null);
+                                    setCurrentSwipeStack(null);
+                                    setSwipeIndex(0);
                                 }}
                                 showSearch={showSearch}
                                 themeClasses={themeClasses}
