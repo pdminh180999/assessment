@@ -11,8 +11,9 @@ export default defineConfig({
         viteStaticCopy({
             targets: [
                 {
-                    src: 'index.html',
-                    dest: '.'
+                    src: 'index-embed.html',
+                    dest: '.',
+                    rename: 'index.html'
                 }
             ]
         }),
