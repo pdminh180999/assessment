@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist Widget Demo</title>
+  <style>
+    /* Host page styles - these WON'T affect the widget! */
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .info-box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      margin: 2rem 0;
+    }
+
+    .code {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1rem;
+      border-radius: 8px;
+      font-family: monospace;
+      color: #ffd700;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .feature {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+    }
+
+    /* This button style WON'T affect widget buttons */
+    button {
+      background: red !important;
+      color: yellow !important;
+      padding: 1rem 2rem !important;
+      font-size: 1.2rem !important;
+      border: 5px solid orange !important;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>🎴 Wishlist Widget Demo</h1>
+  <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+    Complete Shadow DOM Isolation - No CSS Conflicts!
+  </p>
+
+  <div class="info-box">
+    <h2 style="margin-bottom: 1rem;">🚀 Installation</h2>
+    <div class="code">
+      &lt;!-- Step 1: Load the widget script --&gt;
+      &lt;script src="https://pdminh180999.github.io/assessment/wishlist-widget.iife.js"&gt;&lt;/script&gt;
+
+      &lt;!-- Step 2: Add the widget element anywhere --&gt;
+      &lt;wishlist-widget theme="light"&gt;&lt;/wishlist-widget&gt;
+    </div>
+  </div>
+
+  <div class="info-box">
+    <h2 style="margin-bottom: 1rem;">⚙️ Configuration</h2>
+    <div class="feature-grid">
+      <div class="feature">
+        <h3 style="margin-bottom: 0.5rem;">Light Theme</h3>
+        <div class="code">
+          &lt;wishlist-widget theme="light"&gt;
+          &lt;/wishlist-widget&gt;
+        </div>
+      </div>
+      <div class="feature">
+        <h3 style="margin-bottom: 0.5rem;">Dark Theme</h3>
+        <div class="code">
+          &lt;wishlist-widget theme="dark"&gt;
+          &lt;/wishlist-widget&gt;
+        </div>
+      </div>
+      <div class="feature">
+        <h3 style="margin-bottom: 0.5rem;">Custom API</h3>
+        <div class="code">
+          &lt;wishlist-widget
+          theme="light"
+          api-url="https://api.example.com"&gt;
+          &lt;/wishlist-widget&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <h2 style="margin-bottom: 1rem;">🧪 Style Isolation Test</h2>
+    <p style="margin-bottom: 1rem;">
+      Notice: This page has aggressive CSS rules that make all buttons red with yellow text and orange borders.
+      The widget buttons remain unaffected thanks to Shadow DOM!
+    </p>
+    <button style="margin-top: 1rem;">Host Page Button (Ugly Styling)</button>
+  </div>
+
+  <div class="info-box" style="text-align: center; margin-top: 3rem;">
+    <h2 style="margin-bottom: 1rem;">👉 Try It Now!</h2>
+    <p style="font-size: 1.1rem;">
+      Look for the floating button in the bottom-right corner
+    </p>
+  </div>
+</div>
+
+<!-- The Widget - Completely isolated in Shadow DOM -->
+<wishlist-widget theme="light"></wishlist-widget>
+
+<!-- Load widget script -->
+<script src="./wishlist-widget.iife.js"></script>
+</body>
+</html>
