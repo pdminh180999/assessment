@@ -12,7 +12,7 @@ import DroppableDeleteZone from "./DroppableDeleteZone";
 import CardOverlay from "./CardOverlay";
 import DroppableMoveZone from "./DroppableMoveZone.jsx";
 
-export default function WishlistDock() {
+export default function WishlistDock({ theme = "light" }) {
     const [state, dispatch] = useReducer(wishlistReducer, initialState);
     const [isDockOpen, setIsDockOpen] = useState(false);
     const [editStack, setEditStack] = useState(null);
@@ -24,7 +24,7 @@ export default function WishlistDock() {
     const [currentSwipeStack, setCurrentSwipeStack] = useState(null);
     const [updatedCurrentStack, setUpdatedCurrentStack] = useState([]);
     const [swipeIndex, setSwipeIndex] = useState(0);
-    const [theme, setTheme] = useState('light');
+    const [initialTheme, setInitialTheme] = useState(theme);
 
     const [activeCard, setActiveCard] = useState(null);
     const [dragState, setDragState] = useState({
@@ -253,9 +253,9 @@ export default function WishlistDock() {
         );
     }, [state.stacks, searchQuery]);
 
-    const themeClasses = getThemeClasses(theme === 'dark');
+    const themeClasses = getThemeClasses(initialTheme === 'dark');
     const {dockBg, borderColor, textColor, cardBg, cardText, cardSubtext} = themeClasses;
-    const isDark = theme === 'dark';
+    const isDark = initialTheme === 'dark';
 
     useEffect(() => {
         if (!currentSwipeStack) {
@@ -361,8 +361,8 @@ export default function WishlistDock() {
                                 activeStack={currentSwipeStack ? currentSwipeStack.id : ''}
                                 stacks={state.stacks}
                                 filteredStacks={filteredStacks}
-                                theme={theme}
-                                onThemeToggle={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+                                theme={initialTheme}
+                                onThemeToggle={() => setInitialTheme(initialTheme === 'light' ? 'dark' : 'light')}
                                 onStackClick={toggleStackCards}
                                 onStackEdit={handleOpenEditStack}
                                 onStackDelete={handleDeleteStack}

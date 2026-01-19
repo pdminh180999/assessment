@@ -1,10 +1,28 @@
-import { defineConfig } from 'vite';
+import {defineConfig} from 'vite';
 import react from '@vitejs/plugin-react';
-import { resolve } from 'path';
+import {resolve} from 'path';
+import tailwindcss from '@tailwindcss/vite';
+import {viteStaticCopy} from 'vite-plugin-static-copy';
 
 export default defineConfig({
-    plugins: [react()],
+    plugins: [
+        react(),
+        tailwindcss(),
+        viteStaticCopy({
+            targets: [
+                {
+                    src: 'index.html',
+                    dest: '.'
+                }
+            ]
+        }),
+    ],
     base: '/assessment/',
+    define: {
+        'process.env': {},
+        'process.env.NODE_ENV': JSON.stringify('production'),
+        global: 'globalThis'
+    },
     build: {
         lib: {
             entry: resolve(__dirname, 'src/embed.jsx'),
@@ -15,15 +33,12 @@ export default defineConfig({
         rollupOptions: {
             output: {
                 inlineDynamicImports: true,
-                assetFileNames: (assetInfo) => {
-                    if (assetInfo.name === 'style.css') return 'assets/style.[hash].css';
-                    return 'assets/[name].[hash][extname]';
-                }
             }
         },
         cssCodeSplit: false,
         commonjsOptions: {
-            include: [/node_modules/]
+            include: [/node_modules/],
+            transformMixedEsModules: true
         }
     },
 });
