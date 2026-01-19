@@ -1,24 +1,45 @@
-import { defineConfig } from 'vite';
+import {defineConfig} from 'vite';
 import react from '@vitejs/plugin-react';
+import {resolve} from 'path';
+import tailwindcss from '@tailwindcss/vite';
+import {viteStaticCopy} from 'vite-plugin-static-copy';
 
 export default defineConfig({
-    plugins: [react()],
+    plugins: [
+        react(),
+        tailwindcss(),
+        viteStaticCopy({
+            targets: [
+                {
+                    src: 'index-embed.html',
+                    dest: '.',
+                    rename: 'index.html'
+                }
+            ]
+        }),
+    ],
+    base: '/assessment/',
+    define: {
+        'process.env': {},
+        'process.env.NODE_ENV': JSON.stringify('production'),
+        global: 'globalThis'
+    },
     build: {
-        outDir: 'dist',
         lib: {
-            entry: 'src/main.jsx',
+            entry: resolve(__dirname, 'src/embed.jsx'),
             name: 'WishlistWidget',
             fileName: 'wishlist-widget',
-            formats: ['es', 'umd']
+            formats: ['iife']
         },
         rollupOptions: {
-            external: ['react', 'react-dom'],
             output: {
-                globals: {
-                    react: 'React',
-                    'react-dom': 'ReactDOM'
-                }
+                inlineDynamicImports: true,
             }
+        },
+        cssCodeSplit: false,
+        commonjsOptions: {
+            include: [/node_modules/],
+            transformMixedEsModules: true
         }
     },
 });
