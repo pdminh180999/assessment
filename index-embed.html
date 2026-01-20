@@ -38,6 +38,9 @@
     }
 
     .code {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
       background: rgba(0, 0, 0, 0.3);
       padding: 1rem;
       border-radius: 8px;
@@ -78,14 +81,14 @@
   <div class="info-box">
     <h2 style="margin-bottom: 1rem;">🚀 Installation</h2>
     <div class="code">
-      <p>
-        &lt;!-- Step 1: Load the widget script --&gt;
-        &lt;script src="https://pdminh180999.github.io/assessment/wishlist-widget.iife.js"&gt;&lt;/script&gt;
-      </p>
-      <p>
-        &lt;!-- Step 2: Add the widget element anywhere --&gt;
-        &lt;wishlist-widget theme="light"&gt;&lt;/wishlist-widget&gt;
-      </p>
+      <div>
+        <p>&lt;!-- Step 1: Load the widget script --&gt;</p>
+        <p>&lt;script src="https://pdminh180999.github.io/assessment/wishlist-widget.iife.js"&gt;&lt;/script&gt;</p>
+      </div>
+      <div>
+        <p>&lt;!-- Step 2: Add the widget element anywhere --&gt;</p>
+        <p>&lt;wishlist-widget theme="light"&gt;&lt;/wishlist-widget&gt;</p>
+      </div>
     </div>
   </div>
 
@@ -95,15 +98,13 @@
       <div class="feature">
         <h3 style="margin-bottom: 0.5rem;">Light Theme</h3>
         <div class="code">
-          &lt;wishlist-widget theme="light"&gt;
-          &lt;/wishlist-widget&gt;
+          &lt;wishlist-widget theme="light"&gt;&lt;/wishlist-widget&gt;
         </div>
       </div>
       <div class="feature">
         <h3 style="margin-bottom: 0.5rem;">Dark Theme</h3>
         <div class="code">
-          &lt;wishlist-widget theme="dark"&gt;
-          &lt;/wishlist-widget&gt;
+          &lt;wishlist-widget theme="dark"&gt;&lt;/wishlist-widget&gt;
         </div>
       </div>
     </div>
@@ -112,7 +113,7 @@
   <div class="info-box" style="text-align: center; margin-top: 3rem;">
     <h2 style="margin-bottom: 1rem;">👉 Try It Now!</h2>
     <p style="font-size: 1.1rem;">
-      Look for the floating button in the bottom-right corner
+      Look for the floating button in the bottom
     </p>
   </div>
 </div>
