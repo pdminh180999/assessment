@@ -101,7 +101,6 @@ function App() {
 
 ## What I'd Improve With More Time
 
--   Real backend.
 -   Better gesture physics (momentum, rubber-band effect).
 -   Smoother swipe effect.
 -   Virtualized lists for large stacks.

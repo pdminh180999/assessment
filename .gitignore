@@ -6,16 +6,15 @@ node_modules/
 build output
 
 dist/
+dist-ssr/
 build/
 .out/
-
 
 env files
 
 .env
 .env.local
 .env.*
-
 
 logs
 
@@ -24,20 +23,23 @@ yarn-debug.log
 yarn-error.log
 pnpm-debug.log
 
-
 OS files
 
 .DS_Store Thumbs.db
-
 
 editor
 
 .vscode/
 .idea/
 *.swp
-
+*.swo
 
 cache
 
 .cache/
 .vite/
+
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
