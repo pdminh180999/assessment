@@ -4,11 +4,11 @@ import autoprefixer from "autoprefixer";
 const property_to_custom_prop = () => ({
     postcssPlugin: 'postcss-property-to-custom-prop',
     prepare() {
-        const properties = [];
+        const properties: { name: any; value: string; }[] = [];
 
         return {
             AtRule: {
-                property: (rule) => {
+                property: (rule: { params: { match: (arg0: RegExp) => any[]; }; walkDecls: (arg0: string, arg1: (decl: any) => void) => void; remove: () => void; }) => {
                     const property_name = rule.params.match(/--[\w-]+/)?.[0];
                     let initial_value = '';
 
@@ -22,7 +22,7 @@ const property_to_custom_prop = () => ({
                     }
                 },
             },
-            OnceExit(root, { Rule, Declaration }) {
+            OnceExit(root: { prepend: (arg0: any) => void; }, { Rule, Declaration }: any) {
                 if (properties.length > 0) {
                     const root_rule = new Rule({ selector: ':root, :host' });
 

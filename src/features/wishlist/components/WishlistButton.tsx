@@ -1,6 +1,6 @@
 import { Wishlist } from '@/shared/types'
 import { StackZone } from '@/features/dnd/components'
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { getThemeClasses } from '@/shared/constants'
 import { generateCover } from '@/shared/utils'
 import { Ellipsis, Pencil, Trash2 } from 'lucide-react'
@@ -16,14 +16,14 @@ interface WishlistCardProps {
 }
 
 export const WishlistButton: React.FC<WishlistCardProps> = ({
-                                                            active,
-                                                            stack,
-                                                            theme,
-                                                            isDark,
-                                                            onStackClick,
-                                                            onEdit,
-                                                            onDelete,
-                                                          }) => {
+                                                              active,
+                                                              stack,
+                                                              theme,
+                                                              isDark,
+                                                              onStackClick,
+                                                              onEdit,
+                                                              onDelete,
+                                                            }) => {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
   const themeClasses = getThemeClasses(theme === 'dark')
@@ -64,6 +64,7 @@ export const WishlistButton: React.FC<WishlistCardProps> = ({
             type="button"
             onClick={() => setOpen(!open)}
             className="p-0.5 rounded hover:bg-white/20 transition-colors"
+            aria-label="Wishlist options menu"
           >
             <Ellipsis className="w-[12px] h-[12px] text-white" />
           </button>
@@ -77,6 +78,7 @@ export const WishlistButton: React.FC<WishlistCardProps> = ({
                 setOpen(false)
               }}
               className={`w-full flex items-center gap-2 px-3 py-2 ${isDark ? 'hover:bg-gray-700' : 'hover:bg-gray-100'} rounded-lg text-left transition-colors`}
+              aria-label="Edit wishlist"
             >
               <Pencil className={`w-4 h-4 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />
               <span
@@ -88,6 +90,7 @@ export const WishlistButton: React.FC<WishlistCardProps> = ({
                 setOpen(false)
               }}
               className={`w-full flex items-center gap-2 px-3 py-2 ${isDark ? 'hover:bg-red-900/30' : 'hover:bg-red-50'} rounded-lg text-left transition-colors`}
+              aria-label="Delete wishlist"
             >
               <Trash2 className="w-4 h-4 text-red-500" />
               <span className="text-sm font-medium text-red-500">Delete</span>
