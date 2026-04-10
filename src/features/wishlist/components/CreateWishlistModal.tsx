@@ -155,6 +155,7 @@ export const CreateWishlistModal: React.FC<CreateWishlistModalProps> = ({
         {!showCardForm && !showStackForm && (
           <div className="space-y-3">
             <button
+              id="add-wishlist-item"
               onClick={() => setShowCardForm(true)}
               className={`w-full p-5 ${inputBg} backdrop-blur-sm hover:${isDark ? 'bg-gray-700/80' : 'bg-white/20'} rounded-2xl text-left border ${borderColor} transition-all`}
             >
@@ -172,6 +173,7 @@ export const CreateWishlistModal: React.FC<CreateWishlistModalProps> = ({
             </button>
 
             <button
+              id="add-wishlist"
               onClick={() => setShowStackForm(true)}
               className={`w-full p-5 ${inputBg} backdrop-blur-sm hover:${isDark ? 'bg-gray-700/80' : 'bg-white/20'} rounded-2xl text-left border ${borderColor} transition-all`}
             >

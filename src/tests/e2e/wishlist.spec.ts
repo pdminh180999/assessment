@@ -6,22 +6,26 @@ test.describe('Wishlist Widget', () => {
   })
 
   test('should create a new wishlist', async ({ page }) => {
-    await page.click('button:has-text("Create Wishlist")')
-    await page.fill('input[id="wishlist-name"]', 'My Test Wishlist')
+    await page.click('button[id="add-edit-button"]')
+    await page.click('button[id="add-wishlist"]')
+    await page.click('button:has-text("Generate Random Color")')
+    await page.fill('input[id="stackName"]', 'My Test Wishlist')
     await page.click('button:has-text("Create")')
     await expect(page.locator('text=My Test Wishlist')).toBeVisible()
   })
 
   test('should delete a wishlist', async ({ page }) => {
-    await page.click('button:has-text("Create Wishlist")')
+    await page.click('button[id="add-edit-button"]')
+    await page.click('button[id="add-wishlist"]')
+    await page.click('button:has-text("Generate Random Color")')
     await page.fill('input[id="wishlist-name"]', 'Test Delete')
     await page.click('button:has-text("Create")')
-    await page.click('[aria-label="Delete wishlist"]')
-    page.on('dialog', dialog => dialog.accept())
+    await page.click('button[aria-label="Wishlist options menu"]')
+    await page.click('button[aria-label="Delete wishlist"]')
     await expect(page.locator('text=Test Delete')).not.toBeVisible()
   })
 
   test('should display empty state when no wishlists', async ({ page }) => {
-    await expect(page.locator('text=No wishlists yet')).toBeVisible()
+    await expect(page.locator('text=No stacks found')).toBeVisible()
   })
 })

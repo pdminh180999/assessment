@@ -143,6 +143,7 @@ export const WishlistDock: React.FC<WishlistDockProps> = ({
       {/* Add Button */}
       <div className="flex flex-col gap-1 relative items-center w-16 border-l border-white/15 ps-2">
         <button
+          id="add-edit-button"
           onClick={onAddClick}
           className={`w-14 h-14 ${isDark ? 'bg-gray-700' : 'bg-gray-500/80'} rounded-2xl flex items-center justify-center hover:scale-105 transition-transform`}
         >
